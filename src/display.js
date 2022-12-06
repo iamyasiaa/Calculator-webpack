@@ -1,7 +1,6 @@
 import "./style.scss";
 import { Calculator } from "./calculator";
-
-const ROOT_BODY = document.getElementById("body");
+import { ROOT_BODY } from "./const";
 
 export class Display {
   constructor() {}

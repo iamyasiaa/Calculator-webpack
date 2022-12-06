@@ -1,22 +1,17 @@
 import "./style.scss";
 
 export class Button {
-  constructor(onClickButton, text, renderDisplay) {
+  constructor(onClickButton, value, operation) {
     this.onClickButton = onClickButton;
-    this.text = text;
-    this.renderDisplay = renderDisplay;
+    this.value = value;
+    this.operation = operation;
   }
+
   render() {
     const button = document.createElement("button");
 
-    button.addEventListener("click", (ev) => {
-      console.log(this);
-      this.onClickButton(ev);
-
-      this.renderDisplay(false);
-    });
-    button.name = this.text;
-    button.innerText = this.text;
+    button.addEventListener("click", () => this.onClickButton(this.value, this.operation)) ;
+    button.innerText = this.value;
     button.className = "button";
 
     return button;
