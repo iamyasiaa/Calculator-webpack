@@ -1,3 +1,4 @@
+import { box } from "./box";
 import "./style.scss";
 
 export class Button {
@@ -8,9 +9,11 @@ export class Button {
   }
 
   render() {
-    const button = document.createElement("button");
+    const button = box.rendeDiv();
 
-    button.addEventListener("click", () => this.onClickButton(this.value, this.operation)) ;
+    button.addEventListener("click", () =>
+      this.onClickButton(this.value, this.operation)
+    );
     button.innerText = this.value;
     button.className = "button";
 

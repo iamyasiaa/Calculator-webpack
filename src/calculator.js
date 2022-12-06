@@ -1,16 +1,8 @@
 import "./style.scss";
 import { Button } from "./button";
-import {
-  arrayButton,
-  arrayNumber,
-  arrayOperation,
-  divButtons,
-  divCalculator,
-  divInput,
-} from "./const";
+import { arrayButton, ENUM_OPERATION, ROOT_BODY } from "./const";
 import { Input } from "./input";
-
-const ROOT_BODY = document.getElementById("body");
+import { Box, element } from "./box";
 
 export class Calculator {
   constructor() {
@@ -22,7 +14,7 @@ export class Calculator {
   }
 
   onClickButton(value, operation) {
-    if (operation === "number") {
+    if (operation === ENUM_OPERATION.NUMBER) {
       if (!this.result) {
         if (this.operation) {
           this.twoNumber = this.twoNumber ? this.twoNumber + value : value;
@@ -108,6 +100,7 @@ export class Calculator {
   }
 
   renderInput() {
+    const divCalculator = element.divCalculator;
     const input = new Input(
       this.result,
       this.operation,
@@ -119,6 +112,8 @@ export class Calculator {
   }
 
   renderCalculator(firstRender) {
+    const divButtons = element.divButtons;
+    const divCalculator = element.divCalculator;
     const input = new Input(
       this.result,
       this.operation,
@@ -136,9 +131,7 @@ export class Calculator {
       return button.render();
     });
 
-    arrayButtonClass.forEach((item) => {
-      divButtons.appendChild(item);
-    });
+    divButtons.append(...arrayButtonClass);
 
     divCalculator.appendChild(input.render());
     divCalculator.appendChild(divButtons);
