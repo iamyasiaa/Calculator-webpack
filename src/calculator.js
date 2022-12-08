@@ -11,6 +11,9 @@ export class Calculator {
     this.twoNumber = "";
     this.firstNumber = "";
     this.onClickButton = this.onClickButton.bind(this);
+    this.divCalculator = new Box("calculator").render();
+    this.divButtons = new Box("buttons-array").render();
+    this.divInput = new Box("input").render();
   }
 
   onClickButton(value, operation) {
@@ -100,30 +103,27 @@ export class Calculator {
   }
 
   renderInput() {
-    const divCalculator = element.divCalculator;
     const input = new Input(
       this.result,
       this.operation,
       this.twoNumber,
-      this.firstNumber
+      this.firstNumber,
+      this.divInput
     );
 
-    divCalculator.appendChild(input.render());
+    this.divCalculator.appendChild(input.render());
   }
 
   renderCalculator(firstRender) {
-    const divButtons = element.divButtons;
-    const divCalculator = element.divCalculator;
     const input = new Input(
       this.result,
       this.operation,
       this.twoNumber,
-      this.firstNumber
+      this.firstNumber,
+      this.divInput
     );
 
-    divButtons.className = "buttons-array";
-    divCalculator.className = "calculator";
-    divButtons.innerHTML = "";
+    this.divButtons.innerHTML = "";
 
     let arrayButtonClass = arrayButton.map((item) => {
       const button = new Button(this.onClickButton, item.value, item.operation);
@@ -131,16 +131,15 @@ export class Calculator {
       return button.render();
     });
 
-    divButtons.append(...arrayButtonClass);
-
-    divCalculator.appendChild(input.render());
-    divCalculator.appendChild(divButtons);
+    this.divButtons.append(...arrayButtonClass);
+    this.divCalculator.appendChild(input.render());
+    this.divCalculator.appendChild(this.divButtons);
 
     if (firstRender) {
-      return divCalculator;
+      return this.divCalculator;
     } else {
       ROOT_BODY.innerHTML = "";
-      ROOT_BODY.appendChild(divCalculator);
+      ROOT_BODY.append(this.divCalculator);
     }
   }
 }

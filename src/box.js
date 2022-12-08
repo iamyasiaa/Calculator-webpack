@@ -1,20 +1,28 @@
 import "./style.scss";
-class Box {
-  constructor() {}
+export class Box {
+  constructor(className) {
+    this.className = className;
+  }
 
-  renderElement() {
-    const divCalculator = document.createElement("div");
-    const divButtons = document.createElement("div");
-    const divInput = document.createElement("div");
-    return {
-      divCalculator,
-      divButtons,
-      divInput,
-    };
+  render() {
+    const div = document.createElement("div");
+    div.className = this.className;
+    return div;
   }
-  rendeDiv() {
-    return document.createElement("div");
-  }
+
+  // renderElement() {
+  //   const divCalculator = document.createElement("div");
+  //   const divButtons = document.createElement("div");
+  //   const divInput = document.createElement("div");
+  //   return {
+  //     divCalculator,
+  //     divButtons,
+  //     divInput,
+  //   };
+  // }
+  // rendeDiv() {
+  //   return document.createElement("div");
+  // }
 }
-export const box = new Box();
-export const element = box.renderElement();
+// export const box = new Box();
+// export const element = box.renderElement();

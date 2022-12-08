@@ -1,4 +1,4 @@
-import { box } from "./box";
+import { Box } from "./box";
 import "./style.scss";
 
 export class Button {
@@ -9,13 +9,12 @@ export class Button {
   }
 
   render() {
-    const button = box.rendeDiv();
+    const button = new Box("button").render();
 
     button.addEventListener("click", () =>
       this.onClickButton(this.value, this.operation)
     );
     button.innerText = this.value;
-    button.className = "button";
 
     return button;
   }
