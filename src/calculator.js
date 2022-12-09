@@ -28,74 +28,83 @@ export class Calculator {
         }
       }
     } else {
-      switch (value) {
-        case "+":
-          if (this.result) {
-            this.operation = value;
-            this.firstNumber = this.result;
-            this.twoNumber = "";
-            this.result = "";
-          } else {
-            this.operation = value;
-          }
-
-          break;
-        case "-":
-          if (this.result) {
-            this.operation = value;
-            this.firstNumber = this.result;
-            this.twoNumber = "";
-            this.result = "";
-          } else {
-            this.operation = value;
-          }
-          break;
-        case "*":
-          if (this.result) {
-            this.operation = value;
-            this.firstNumber = this.result;
-            this.twoNumber = "";
-            this.result = "";
-          } else {
-            this.operation = value;
-          }
-          break;
-        case "/":
-          if (this.result) {
-            this.operation = value;
-            this.firstNumber = this.result;
-            this.twoNumber = "";
-            this.result = "";
-          } else {
-            this.operation = value;
-          }
-          break;
-        case "=":
-          let result;
-          const first = this.firstNumber;
-          const two = this.twoNumber;
-          const operation = this.operation;
-
-          if (first && two) {
-            if (operation === "+") {
-              result = +first + +two;
-            } else if (operation === "-") {
-              result = first - two;
-            } else if (operation === "*") {
-              result = +first * +two;
+      if (this.firstNumber) {
+        switch (value) {
+          case "+":
+            if (this.result) {
+              this.operation = value;
+              this.firstNumber = this.result;
+              this.twoNumber = "";
+              this.result = "";
             } else {
-              result = +first / +two;
+              this.operation = value;
             }
-            this.result = result;
-          }
 
-          break;
-        case "AC":
-          this.operation = "";
-          this.firstNumber = "";
-          this.twoNumber = "";
-          this.result = "";
-          break;
+            break;
+          case "-":
+            if (this.result) {
+              this.operation = value;
+              this.firstNumber = this.result;
+              this.twoNumber = "";
+              this.result = "";
+            } else {
+              this.operation = value;
+            }
+            break;
+          case "*":
+            if (this.result) {
+              this.operation = value;
+              this.firstNumber = this.result;
+              this.twoNumber = "";
+              this.result = "";
+            } else {
+              this.operation = value;
+            }
+            break;
+          case "/":
+            if (this.result) {
+              this.operation = value;
+              this.firstNumber = this.result;
+              this.twoNumber = "";
+              this.result = "";
+            } else {
+              this.operation = value;
+            }
+            break;
+          case "=":
+            let result;
+            const first = this.firstNumber;
+            const two = this.twoNumber;
+            const operation = this.operation;
+
+            if (first && two) {
+              if (operation === "+") {
+                result = +first + +two;
+              } else if (operation === "-") {
+                result = first - two;
+              } else if (operation === "*") {
+                result = +first * +two;
+              } else {
+                result = +first / +two;
+                if (
+                  result === Infinity ||
+                  result === -Infinity ||
+                  isNaN(result)
+                ) {
+                  result = 0;
+                }
+              }
+              this.result = result;
+            }
+
+            break;
+          case "AC":
+            this.operation = "";
+            this.firstNumber = "";
+            this.twoNumber = "";
+            this.result = "";
+            break;
+        }
       }
     }
 
@@ -114,7 +123,7 @@ export class Calculator {
     this.divCalculator.appendChild(input.render());
   }
 
-  renderCalculator(firstRender) {
+  renderCalculator() {
     const input = new Input(
       this.result,
       this.operation,
@@ -135,11 +144,7 @@ export class Calculator {
     this.divCalculator.appendChild(input.render());
     this.divCalculator.appendChild(this.divButtons);
 
-    if (firstRender) {
-      return this.divCalculator;
-    } else {
-      ROOT_BODY.innerHTML = "";
-      ROOT_BODY.append(this.divCalculator);
-    }
+    ROOT_BODY.innerHTML = "";
+    ROOT_BODY.append(this.divCalculator);
   }
 }

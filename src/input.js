@@ -1,6 +1,4 @@
 import "./style.scss";
-import { divInput } from "./const";
-import { Box, element } from "./box";
 
 export class Input {
   constructor(result, operation, twoNumber, firstNumber, divInput) {
@@ -12,12 +10,17 @@ export class Input {
   }
 
   render() {
+    console.log(this);
     this.divInput.innerHTML = "";
-    if (!this.result && this.operation && this.twoNumber) {
+    if (this.result === "" && this.operation !== "" && this.twoNumber !== "") {
       this.divInput.innerHTML = `${this.firstNumber} ${this.operation} ${this.twoNumber}`;
-    } else if (!this.result && this.operation && this.firstNumber) {
+    } else if (
+      this.result === "" &&
+      this.operation !== "" &&
+      this.firstNumber !== ""
+    ) {
       this.divInput.innerHTML = `${this.firstNumber} ${this.operation}`;
-    } else if (this.result) {
+    } else if (this.result !== "") {
       this.divInput.innerHTML = `${this.firstNumber} ${this.operation} ${this.twoNumber} = ${this.result}`;
     } else {
       this.divInput.innerHTML = this.firstNumber;
