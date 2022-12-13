@@ -86,12 +86,11 @@ export class Calculator {
                 result = +first * +two;
               } else {
                 result = +first / +two;
-                if (
-                  result === Infinity ||
-                  result === -Infinity ||
-                  isNaN(result)
-                ) {
-                  result = 0;
+                if (isNaN(result)) {
+                }
+                if (result === Infinity || result === -Infinity) {
+                  result = "";
+                  alert("На ноль делить нельзя");
                 }
               }
               this.result = result;
